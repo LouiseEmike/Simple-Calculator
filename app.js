@@ -31,15 +31,12 @@ class ConvertString{
         let val = Input.digit, arr =[], str="";
         if(val.length != 0){
             for(let i=0; i<val.length; i++){
-                // if(i== 0 && val[0] ==)
                 if(val[i] =="-" && (val[i-1] == "/" || val[i-1] =="*") && val.length >= 3){
-                    // arr.pop();
                     if(val[i+1] == undefined){
                         str=val[i];
                         arr.push(str);
                         str ="";
                     }else if (!("+-/*".includes(val[i+1]))){
-                        // arr.pop();
                         str = val[i];
                         str += val[i+1];
                         arr.push(str);
@@ -71,7 +68,7 @@ class ConvertString{
             if(str !=""){
                 arr.push(str);
             }
-            return arr;   
+            return arr;    
         }
         return "empty";
         
@@ -84,7 +81,7 @@ class ConvertString{
         let sum =0, val1=0, val2=0;
         if(arr.length >=3 ){
             
-            for(let i=0; i<arr.length; i+2){
+            for(let i=0; i<arr.length; i+=2){
                 
                 if(i==0 && arr[i] =="-"){
                     val1 =-Math.abs(Number(arr[1]));
@@ -96,30 +93,33 @@ class ConvertString{
                         sum = Number(arr[0]);
                     }
                     else{
-                        val1 = Number(arr[i])
+                        val1 = Number(arr[i]);
                         if(!isNaN(val1)){
                             if(arr[i-1]=="+"){
                                 val2 = ArithmeticOperations.add(sum,val1);                          
-                                sum += val2;
+                                sum = val2;
                             }
                             else if(arr[i-1]=="-"){
                                 val2 = ArithmeticOperations.subtract(sum,val1);                           
-                                sum += val2;
+                                sum = val2;
                             }
                             else if(arr[i-1]=="*"){
                                 val2 = ArithmeticOperations.multiply(sum,val1);                            
-                                sum += val2;
+                                sum = val2;
                             }
                             else{
                                 val2 = ArithmeticOperations.divide(sum,val1);                            
-                                sum += val2;
+                                sum = val2;
                             }
+                        }else{
+                            return "Not a Number";
                         }
                     }
                 }
             }
             return sum;            
-        }   
+        } 
+        return "length < 3";
     }
 }
 document.querySelector('#position3').addEventListener('click', e => {
