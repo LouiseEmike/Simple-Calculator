@@ -13,10 +13,10 @@
 
 <body>
 <div class="container">
-    <div class="item position1">1</div>
+    <div class="item position1"><span class="louise">Louise</span></div>
     <div class="item position2">
-        <div class="numbers" id="input">Hi dear</div>
-        <div class="numbers" id="answer">How</div>
+        <div class="numbers" id="input"></div>
+        <div class="numbers" id="answer"></div>
     </div>
     <div class="item position3" id="position3">
         <div class="val" id="clear">C</div>
@@ -42,42 +42,7 @@
         
     </div>
 </div> 
-<!-- <i class='fas fa-infinity'></i> -->
-<style>
-    .container{
-        margin: 0 20%;
-        display: grid;
-        height: 500px;
-        grid-template-rows: 0.25fr 1.25fr 3.5fr;
-        grid-gap: 2px;
-        width: 50%;
-    }
-    .position3{
-        
-        display: grid;
-        grid-gap: 1px;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-    }
-    #equals{
-        grid-row: span 2;
-        /* grid-column:  */
-    }
-    #zero{
-        grid-column: 1/3;
-    }
-    .val i{
-        font-size:45px;
-    }
-    .position2{
-        text-align: right;
-        font-size: 20px;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        grid-gap: 1px;
-    }
-</style>
+
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-console.log(Number("-40") + Infinity / 0);
 class Input {
     
     static get _digit(){
@@ -21,9 +20,6 @@ class ArithmeticOperations{
     }
     static divide(a,b){
         return a/b;
-    }
-    static equals(){
-        return "ans";
     }
 }
 class ConvertString{
@@ -96,30 +92,65 @@ class ConvertString{
                         val1 = Number(arr[i]);
                         if(!isNaN(val1)){
                             if(arr[i-1]=="+"){
-                                val2 = ArithmeticOperations.add(sum,val1);                          
+                                val2 = ArithmeticOperations.add(sum,parseFloat(val1));                          
                                 sum = val2;
                             }
                             else if(arr[i-1]=="-"){
-                                val2 = ArithmeticOperations.subtract(sum,val1);                           
+                                val2 = ArithmeticOperations.subtract(sum,parseFloat(val1));                           
                                 sum = val2;
                             }
                             else if(arr[i-1]=="*"){
-                                val2 = ArithmeticOperations.multiply(sum,val1);                            
+                                val2 = ArithmeticOperations.multiply(sum,parseFloat(val1));                            
                                 sum = val2;
                             }
                             else{
-                                val2 = ArithmeticOperations.divide(sum,val1);                            
+                                val2 = ArithmeticOperations.divide(sum,parseFloat(val1));                            
                                 sum = val2;
                             }
-                        }else{
-                            return "Not a Number";
+                        }
+                        else{
+                            return "";
                         }
                     }
                 }
             }
             return sum;            
         } 
-        return "length < 3";
+        return "";
+    }
+}
+class UI{
+    numberInputs(){
+        let display = document.querySelector('#input');
+        display.textContent = Input.digit;
+        return display; 
+    }
+    output(){
+        let display = document.querySelector('#answer');
+        let result = ConvertString.evaluate();
+        if(isNaN(result)){
+            if(result == ""){
+                display.textContent = "";
+            } else{
+                display.textContent = "Infinity";
+            }
+        }else{
+            display.textContent = result;
+
+        }
+        return display;
+    }
+    answer(){
+        let input = document.querySelector('#input');
+        let output = document.querySelector('#answer');
+
+        let val = (output.textContent).slice();
+        output.textContent ="";
+
+        input.innerHTML = val;
+        return input;
+
+
     }
 }
 document.querySelector('#position3').addEventListener('click', e => {
@@ -197,50 +228,32 @@ document.querySelector('#position3').addEventListener('click', e => {
             symVal =sym;
             break;   
     }
-    // console.log(symVal);
     if(Input.digit == undefined){
         Input.digit = "";
     }
-    
     if(symVal == "clear"){
-        Input.digit = "";
+        Input.digit = "0";
     } else if(symVal == "cancel"){
         let val = Input.digit;
         Input.digit = val.slice(0, -1);
-        console.log(Input.digit);
-        console.log(ConvertString.values());
-        // console.table(ConvertString.evaluate());
 
     } else{
         let sym = "+/*";
         if(Input.digit == ""){
             if(symVal == "."){
-                Input.digit = "0."
-                console.log(Input.digit);
-                console.log(ConvertString.values());
-                console.log(ConvertString.evaluate());
+                Input.digit = "0.";
 
             }
             else if(symVal == "="){
                 Input.digit = "0";
-                console.log(Input.digit);
-                console.log(ConvertString.values());
-                console.log(ConvertString.evaluate());
 
             }
             else if(!sym.includes(symVal)){
                 Input.digit = symVal;
-                console.log(Input.digit);
-                console.log(ConvertString.values());
-                console.log(ConvertString.evaluate());
 
             }else if(sym.includes(symVal)){
                 Input.digit ="0";
                 Input.digit += symVal;
-                console.log(Input.digit);
-                console.log(ConvertString.values());
-                console.log(ConvertString.evaluate());
-
             }
 
         } else {
@@ -251,34 +264,22 @@ document.querySelector('#position3').addEventListener('click', e => {
             if(characters.includes(symVal)){
                 if ((lastChar == "*" || lastChar == "/") && symVal =="-"){
                     Input.digit += symVal;
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
 
                 }                    
                 else if (lastChar == "+" || lastChar == "-"|| lastChar == "*" || lastChar == "/"){
                     if((symVal =="+" || symVal =="/"|| symVal =="*") && lastChar =="-" && (str[str.length-2] =="/" || str[str.length-2] =="*")){
                         str = str.slice(0,-2);
                         str += symVal;
-                        Input.digit = str;
-                        console.log(Input.digit);
-                        console.log(ConvertString.values());
-                        console.log(ConvertString.evaluate());
+                        Input.digit = str;;
 
                     }else{
                         if(str =="-" && (symVal== "+" || symVal== "/" || symVal== "*")){
                             Input.digit = "0";
                             Input.digit += symVal;
-                            console.log(Input.digit);
-                            console.log(ConvertString.values());
-                            console.log(ConvertString.evaluate());
-
+                            
                         } else {
                             Input.digit = str.replace(/.$/,symVal);
-                            console.log(Input.digit);
-                            console.log(ConvertString.values());
-                            console.log(ConvertString.evaluate());
-
+                            
                         }
                     }
                     
@@ -287,18 +288,12 @@ document.querySelector('#position3').addEventListener('click', e => {
                     if(lastChar =="."){
                         Input.digit += "0";
                         Input.digit += symVal;
-                        console.log(Input.digit);
-                        console.log(ConvertString.values());
-                        console.log(ConvertString.evaluate());
-
+                        
                     }
                     
                     else {
                         Input.digit += symVal;
-                        console.log(Input.digit);
-                        console.log(ConvertString.values());
-                        console.log(ConvertString.evaluate());
-
+                        
                     }
                     
                 }
@@ -314,50 +309,41 @@ document.querySelector('#position3').addEventListener('click', e => {
                 }
                 if(subs.length = 1 && characters.includes(subs)){
                     Input.digit += "0.";
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
                     
                 }
                 else if(!subs.includes('.')){
                     Input.digit += symVal;
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
 
                 }
             }
             else if(symVal == "="){
-                console.log(Input.digit);
-                console.log(ConvertString.values());
-                console.log(ConvertString.evaluate());
-
+                if(ConvertString.evaluate() == ""){
+                    if(input.digit == ""){
+                        Input.digit = "0";
+                    }
+                    
+                }
+                else{
+                    Input.digit = ConvertString.evaluate();
+                }
             }
             else{
                 if(str=="0"){
                     Input.digit = symVal;
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
 
                 }
                 else if(lastChar =="0" && (symVal != "." || !(characters.includes(symVal)) ) && (characters.includes(str[str.length-2]))){
                     Input.digit = str.replace(/.$/,symVal);
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
 
                 }else{
                     Input.digit += symVal;
-                    console.log(Input.digit);
-                    console.log(ConvertString.values());
-                    console.log(ConvertString.evaluate());
-
-
                 }
             }
         }
         
     }
+    const ui = new UI;
+    ui.numberInputs();
+    ui.output();
     e.preventDefault();
 });

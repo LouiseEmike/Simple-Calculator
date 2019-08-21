@@ -1,10 +1,3 @@
-/*
-  Oh Hello!
-
-  These are some base styles so that our tutorial looks good.
-
-  Let's go through the important bits real quick
-*/
 :root {
     --lightgreen: #BADA55;
     --hello: rgb(40, 110, 87);
@@ -15,10 +8,8 @@
   }
   
   html {
-    /* border-box box model allows us to add padding and border to our elements without increasing their size */
-    box-sizing: border-box;
-    /* A system font stack so things load nice and quick! */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+   box-sizing: border-box;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
       Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 900;
     font-size: 10px;
@@ -26,11 +17,6 @@
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
   }
   
-  /*
-    WAT IS THIS?!
-    We inherit box-sizing: border-box; from our <html> selector
-    Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
-  */
   *,
   *:before,
   *:after {
@@ -56,16 +42,15 @@
   h6 {
     margin: 0 0 5px 0;
   }
-  /* Each item in our grid will contain numbers */
+  
   .item {
-    /* We center the contents of these items. You can also do this with flexbox too! */
     display: grid;
     justify-content: center;
     align-items: center;
     border: 5px solid rgba(0, 0, 0, 0.03);
     border-radius: 3px;
     font-size: 35px;
-    /*background-color: var(--darkbrown); best colour */
+    
   }
   .val{
     cursor: pointer;
@@ -74,38 +59,77 @@
     align-items: center;
     background-color: var(--darkbrown);
     border-radius: 3px;
-    /* border: 0px solid #feae7100; */
     
 
   }
+  .container{
+    margin: 0 20%;
+    display: grid;
+    height: 500px;
+    grid-template-rows: 0.25fr 1.25fr 3.5fr;
+    grid-gap: 2px;
+    width: 50%;
+}
+.position3{
+    
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+#equals{
+    grid-row: span 2;
+}
+#zero{
+    grid-column: 1/3;
+}
+.val i{
+    font-size:45px;
+}
+.position2{
+    text-align: right;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1px;
+}
+.louise {
+    color: white!important;
+    border-radius: 50px / 15px;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    
+    background-color: #fc8b533b;
+    position:static;
+    animation: myfirst 5s linear 2s infinite alternate;
+}
+
+@keyframes myfirst {
+    0%   {background-color:rgba(199, 126, 126, 0.959); left:0px; top:0px;}
+    25%  {background-color:rgb(108, 179, 161); left:20px; top:0px;}
+    50%  {background-color:rgb(197, 197, 224); left:20px; top:20px;}
+    75%  {background-color:rgb(192, 240, 192); left:0px; top:20px;}
+    100% {background-color:rgb(230, 125, 125); left:0px; top:0px;}
+}
   .container .item .val:hover{
     
     background-color: rgb(209, 211, 94);
+    border-radius: 25%;
+    font-weight: lighter;
+    
   }
-  
+  #clear, #divide, #multiply, #cancel, #plus, #minus{
+    color: rgb(231, 247, 247);
+  }
+  #equals{
+    background-color: rgb(231, 247, 247);
+  }
   .item p {
     margin: 0 0 5px 0;
   }
   .position1, .position2{
       background-color: var(--dimwhite);
   }
-  /* @media(max-width: 320px){
-    body{
-        background-size: 320px,cover;
-    }
+  #answer{
+    color: rgb(183, 92, 45);
   }
-  @media(max-width: 375px){
-    body{
-        background-size: 375px, cover;
-    }
-  }
-  @media(max-width: 425px){
-    body{
-        background-size: 425px, cover;
-    }
-  } */
-  /* @media(max-width: 10px){
-    body{
-        background-size: 320px, auto;
-    }
-  } */
